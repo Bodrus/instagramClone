@@ -1,0 +1,98 @@
+import {Image, Pressable, Text, View} from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import React, {useState} from 'react';
+
+import styles from './styles.ts';
+import {IPost} from '../../types/models.ts';
+import {Carousel, Comment, DoublePressable} from '../index.ts';
+import colors from '../../theme/colors.ts';
+
+interface FeedPostProps {
+  post: IPost;
+}
+
+const FeedPost = ({post}: FeedPostProps) => {
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleDescriptionExpanded = () => setIsDescriptionExpanded(v => !v);
+  const toggleLiked = () => setIsLiked(v => !v);
+
+  let content;
+  if (post.image) {
+    content = (
+      <DoublePressable onDoublePress={toggleLiked}>
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
+      </DoublePressable>
+    );
+  } else if (post.images) {
+    content = <Carousel images={post.images} toggleLiked={toggleLiked} />;
+  }
+
+  return (
+    <View>
+      <View style={styles.header}>
+        <Image
+          source={{
+            uri: post.user.image,
+          }}
+          style={styles.userAvatar}
+        />
+        <Text style={styles.userName}>{post.user.username}</Text>
+        <Entypo
+          name="dots-three-horizontal"
+          style={styles.threeDots}
+          size={16}
+        />
+      </View>
+      {content}
+      {/*footer*/}
+      <View style={styles.footer}>
+        <View style={styles.iconContainer}>
+          <Pressable onPress={toggleLiked}>
+            <AntDesign
+              name={isLiked ? 'heart' : 'hearto'}
+              size={24}
+              style={styles.icon}
+              color={isLiked ? colors.accent : colors.black}
+            />
+          </Pressable>
+          <Ionicons name="chatbubble-outline" size={24} style={styles.icon} />
+          <Feather name="send" size={24} style={styles.icon} />
+          <Feather name="bookmark" size={24} style={{marginLeft: 'auto'}} />
+        </View>
+
+        {/*Likes*/}
+        <Text style={styles.text}>
+          Liked by <Text style={styles.boldText}>lgrinevicius</Text> and{' '}
+          <Text style={styles.boldText}>66 others</Text>
+        </Text>
+
+        {/*Post Description*/}
+        <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 3 : 0}>
+          <Text style={styles.boldText}>{post.user.username}</Text>{' '}
+          {post.description}
+        </Text>
+        <Text style={styles.textGrey} onPress={toggleDescriptionExpanded}>
+          {isDescriptionExpanded ? 'more' : 'less'}
+        </Text>
+        <Text style={styles.textGrey}>View all 16 comments</Text>
+        {post.comments.map(el => (
+          <Comment key={el.id} comment={el} />
+        ))}
+
+        <Text style={styles.textGrey}>{post.createdAt}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default FeedPost;
