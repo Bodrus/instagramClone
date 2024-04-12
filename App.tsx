@@ -1,11 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import HomeScreen from './src/screens/HomeScreen.tsx';
+import HomeScreen from './src/screens/HomeScreen/HomeScreen.tsx';
+import CommentScreen from "./src/screens/CommentScreen/CommentScreen.tsx";
 
 const App = () => {
   return (
     <SafeAreaView style={styles.post}>
-      <HomeScreen />
+      <CommentScreen />
+      {/*<HomeScreen />*/}
     </SafeAreaView>
   );
 };
