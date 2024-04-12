@@ -7,14 +7,15 @@ import React, {useState} from 'react';
 
 import styles from './styles.ts';
 import {IPost} from '../../types/models.ts';
-import {Carousel, Comment, DoublePressable} from '../index.ts';
+import {Carousel, Comment, DoublePressable, VideoPlayer} from '../index.ts';
 import colors from '../../theme/colors.ts';
 
 interface FeedPostProps {
   post: IPost;
+  isVisible: boolean
 }
 
-const FeedPost = ({post}: FeedPostProps) => {
+const FeedPost = ({post, isVisible}: FeedPostProps) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -35,6 +36,12 @@ const FeedPost = ({post}: FeedPostProps) => {
     );
   } else if (post.images) {
     content = <Carousel images={post.images} toggleLiked={toggleLiked} />;
+  } else if (post.video) {
+    content = (
+      <DoublePressable onDoublePress={toggleLiked}>
+        <VideoPlayer uri={post.video} paused={!isVisible} />
+      </DoublePressable>
+    );
   }
 
   return (

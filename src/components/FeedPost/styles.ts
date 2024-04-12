@@ -39,7 +39,7 @@ export default StyleSheet.create({
     lineHeight: 18,
   },
   textGrey: {
-    color: colors.grey
+    color: colors.grey,
   },
   boldText: {
     fontWeight: fonts.weight.bold,
