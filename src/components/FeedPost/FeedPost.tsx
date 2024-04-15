@@ -12,7 +12,7 @@ import colors from '../../theme/colors.ts';
 
 interface FeedPostProps {
   post: IPost;
-  isVisible: boolean
+  isVisible: boolean;
 }
 
 const FeedPost = ({post, isVisible}: FeedPostProps) => {
@@ -92,7 +92,7 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
           {isDescriptionExpanded ? 'more' : 'less'}
         </Text>
         <Text style={styles.textGrey}>View all 16 comments</Text>
-        {post.comments.map(el => (
+        {post.comments?.map(el => (
           <Comment key={el.id} comment={el} />
         ))}
 

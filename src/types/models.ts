@@ -20,9 +20,9 @@ export interface IPost {
   image?: string;
   images?: string[];
   video?: string;
-  description: string;
+  description?: string;
   user: IUser;
-  nofComments: number;
-  nofLikes: number;
-  comments: IComment[];
+  nofComments?: number;
+  nofLikes?: number;
+  comments?: IComment[];
 }
