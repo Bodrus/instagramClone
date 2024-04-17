@@ -2,8 +2,9 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import HomeScreen from './src/screens/HomeScreen/HomeScreen.tsx';
 import CommentsScreen from './src/screens/CommentsScreen/CommentsScreen.tsx';
-import EditProfileScreen from "./src/screens/EditProfileScreen/EditProfileScreen.tsx";
+import EditProfileScreen from './src/screens/EditProfileScreen/EditProfileScreen.tsx';
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen.tsx';
+import PostUploadScreen from './src/screens/PostUploadScreen';
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
       {/*<CommentsScreen />*/}
       {/*<HomeScreen />*/}
       {/*<ProfileScreen />*/}
-      <EditProfileScreen />
+      {/*<EditProfileScreen />*/}
+      <PostUploadScreen />
     </SafeAreaView>
   );
 };

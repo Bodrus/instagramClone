@@ -1,5 +1,5 @@
 {
-  "name": "AwesomeProject",
+  "name": "MyInstagramClone",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@types/react-native-vector-icons": "^6.4.18",
+    "expo": "^50.0.0",
+    "expo-camera": "~14.1.3",
     "react": "18.2.0",
     "react-hook-form": "^7.51.3",
     "react-native": "0.73.6",
