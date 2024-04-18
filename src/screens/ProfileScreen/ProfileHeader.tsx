@@ -4,10 +4,15 @@ import user from '../../assets/data/user.json';
 import {Image, Text, View} from 'react-native';
 import styles from './styles.ts';
 import Button from '../../components/Button';
+import {useNavigation} from '@react-navigation/native';
 
 const ProfileHeader = () => {
-  const handleEditPress = () => {};
+  const navigation = useNavigation();
+
+  const handleEditPress = () => navigation.navigate('EditProfile');
+
   const handleAnotherPress = () => {};
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
