@@ -1,8 +1,8 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import * as React from 'react';
 import {Image} from 'react-native';
+import ProfileStackNavigator from './ProfileStackNavigator.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,8 +16,8 @@ const HomeStackNavigator = () => {
       />
       <Stack.Screen
         name="UserProfile"
-        component={ProfileScreen}
-        options={{title: 'Profile'}}
+        component={ProfileStackNavigator}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -26,7 +26,7 @@ const HomeStackNavigator = () => {
 const HeaderTitle = () => (
   <Image
     source={require('../assets/images/logo.png')}
-    style={{width: 70, height: 35}}
+    style={{width: 120, height: 35}}
   />
 );
 

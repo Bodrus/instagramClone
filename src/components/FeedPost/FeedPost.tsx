@@ -32,6 +32,8 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
     navigation.navigate('UserProfile', {userId: post.user.id});
   };
 
+  const goToAllComments = () => navigation.navigate('Comments');
+
   let content;
   if (post.image) {
     content = (
@@ -103,7 +105,9 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
         <Text style={styles.textGrey} onPress={toggleDescriptionExpanded}>
           {isDescriptionExpanded ? 'more' : 'less'}
         </Text>
-        <Text style={styles.textGrey}>View all 16 comments</Text>
+        <Text style={styles.textGrey} onPress={goToAllComments}>
+          View all 16 comments
+        </Text>
         {post.comments?.map(el => (
           <Comment key={el.id} comment={el} />
         ))}

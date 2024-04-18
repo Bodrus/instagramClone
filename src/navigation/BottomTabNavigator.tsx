@@ -1,13 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PostUploadScreen from '../screens/PostUploadScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../theme/colors.ts';
 import HomeStackNavigator from './HomeStackNavigator.tsx';
+import ProfileStackNavigator from './ProfileStackNavigator.tsx';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,7 +67,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="MyProfile"
-        component={ProfileScreen}
+        component={ProfileStackNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({color, size}) => (
