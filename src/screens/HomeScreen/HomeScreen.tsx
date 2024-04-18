@@ -7,7 +7,7 @@ import FeedPost from '../../components/FeedPost';
 const HomeScreen = () => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
   const viewabilityConfig = {
-    viewAreaCoveragePercentThreshold: 60, // Trigger on at least 51% of the item being visible
+    viewAreaCoveragePercentThreshold: 60, // Trigger on at least 51% of the item being visibleviewAreaCoveragePercentThreshold
   };
 
   const onViewableItemsChanged = useCallback(

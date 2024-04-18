@@ -9,7 +9,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const {userId} = route.params;
+  const userId = route.params?.userId;
   navigation.setOptions({title: userId});
 
   return <FeedGridView data={user.posts} ListHeaderComponent={ProfileHeader} />;
