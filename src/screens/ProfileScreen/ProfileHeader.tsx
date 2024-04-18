@@ -2,8 +2,8 @@ import React from 'react';
 
 import user from '../../assets/data/user.json';
 import {Image, Text, View} from 'react-native';
-import {Button} from '../../components';
 import styles from './styles.ts';
+import Button from '../../components/Button';
 
 const ProfileHeader = () => {
   const handleEditPress = () => {};
