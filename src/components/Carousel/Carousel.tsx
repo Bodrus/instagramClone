@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 
 import {Dimensions, FlatList, Image, View, ViewToken} from 'react-native';
 import colors from '../../theme/colors.ts';
-import {DoublePressable} from '../index.ts';
+import DoublePressable from "../DoublePressable";
 
 interface CarouselProps {
   images?: string[];

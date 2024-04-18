@@ -1,22 +1,38 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen/HomeScreen.tsx';
-import {SafeAreaView, StyleSheet} from 'react-native';
+
+import {Image} from 'react-native';
+
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+
+const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
-        <HomeScreen />
-      </NavigationContainer>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerTitle: HeaderTitle, headerTitleAlign: 'center'}}
+        />
+        <Stack.Screen
+          name="UserProfile"
+          component={ProfileScreen}
+          options={{title: 'Profile'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const HeaderTitle = () => (
+  <Image
+    source={require('../assets/images/logo.png')}
+    style={{width: 70, height: 35}}
+  />
+);
 
 export default Navigation;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {FlatList, Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import data from '../../assets/data/comments.json';
-import {Comment} from '../../components';
 import {useState} from 'react';
 import colors from '../../theme/colors.ts';
 import fonts from '../../theme/fonts.ts';
+import Comment from '../../components/Comment';
 
 const CommentsScreen = () => {
   const [value, onChangeText] = useState('');

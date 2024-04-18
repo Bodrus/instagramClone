@@ -2,7 +2,6 @@ import {Pressable, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import Video from 'react-native-video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import styles from '../FeedPost/styles.ts';
 import colors from '../../theme/colors.ts';
 
 interface VideoPlayerProps {
