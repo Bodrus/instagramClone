@@ -70,6 +70,7 @@ const PostUploadScreen = () => {
   };
 
   const handleFlipCamera = () => {
+    console.log('FLIP Camera flipped');
     setTypeCamera(type =>
       type === 'back' ? CameraType.front : CameraType.back,
     );
