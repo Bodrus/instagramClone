@@ -12,7 +12,7 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        // options={{title: 'MyProfile'}}
+        options={{title: 'MyProfile'}}
       />
       <Stack.Screen
         name="EditProfile"

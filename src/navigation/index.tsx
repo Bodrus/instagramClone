@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTabNavigator from './BottomTabNavigator.tsx';
@@ -8,9 +8,31 @@ import {RootNavigatorParamsList} from './types.ts';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamsList>();
 
+// npx uri-scheme open bodrusphotos://user/Max --android
+
+const linking: LinkingOptions<RootNavigatorParamsList> = {
+  prefixes: ['bodrusphotos://', 'https://bodrusphotos.com'],
+  config: {
+    initialRouteName: 'Home',
+    screens: {
+      Comments: 'comments',
+      Home: {
+        screens: {
+          HomeStack: {
+            initialRouteName: 'Feed',
+            screens: {
+              UserProfile: 'user/:userId',
+            },
+          },
+        },
+      },
+    },
+  },
+};
+
 const Navigation = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{headerShown: true}}>
