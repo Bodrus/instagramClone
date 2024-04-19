@@ -3,14 +3,15 @@ import HomeScreen from '../screens/HomeScreen';
 import * as React from 'react';
 import {Image} from 'react-native';
 import ProfileStackNavigator from './ProfileStackNavigator.tsx';
+import {HomeStackNavigatorParamList} from './types.ts';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Feed"
         component={HomeScreen}
         options={{headerTitle: HeaderTitle, headerTitleAlign: 'center'}}
       />

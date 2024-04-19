@@ -13,6 +13,7 @@ import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
 import Comment from '../Comment';
+import {FeedNavigationProps} from '../../navigation/types.ts';
 
 interface FeedPostProps {
   post: IPost;
@@ -23,7 +24,7 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<FeedNavigationProps>();
 
   const toggleDescriptionExpanded = () => setIsDescriptionExpanded(v => !v);
   const toggleLiked = () => setIsLiked(v => !v);
@@ -32,7 +33,8 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
     navigation.navigate('UserProfile', {userId: post.user.id});
   };
 
-  const goToAllComments = () => navigation.navigate('Comments');
+  const goToAllComments = () =>
+    navigation.navigate('Comments', {postId: post.id});
 
   let content;
   if (post.image) {
