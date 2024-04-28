@@ -5,12 +5,12 @@ import {Image, Text, View} from 'react-native';
 import styles from './styles.ts';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
-import { ProfileNavigationProps } from "../../navigation/types.ts";
+import {ProfileNavigationProp} from '../../types/navigation.ts';
 
 const ProfileHeader = () => {
-  const navigation = useNavigation<ProfileNavigationProps>();
+  const navigation = useNavigation<ProfileNavigationProp>();
 
-  const handleEditPress = () => navigation.navigate('EditProfile');
+  const handleEditPress = () => navigation.navigate('Edit Profile');
 
   const handleAnotherPress = () => {};
 
