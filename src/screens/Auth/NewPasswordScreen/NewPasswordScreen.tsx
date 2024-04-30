@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {
+  confirmResetPassword,
+  type ConfirmResetPasswordInput,
+} from 'aws-amplify/auth';
+
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
@@ -18,9 +23,21 @@ const NewPasswordScreen = () => {
 
   const navigation = useNavigation<NewPasswordNavigationProp>();
 
-  const onSubmitPressed = (data: NewPasswordType) => {
-    console.warn(data);
-    navigation.navigate('Sign in');
+  const onSubmitPressed = async ({
+    username,
+    code,
+    password,
+  }: NewPasswordType) => {
+    try {
+      await confirmResetPassword({
+        username: username,
+        confirmationCode: code,
+        newPassword: password,
+      });
+      navigation.navigate('Sign in');
+    } catch (error) {
+      console.log('!! error', error);
+    }
   };
 
   const onSignInPress = () => {

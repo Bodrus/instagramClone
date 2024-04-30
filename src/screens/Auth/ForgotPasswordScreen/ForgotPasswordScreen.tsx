@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
+import {resetPassword, type ResetPasswordOutput} from 'aws-amplify/auth';
+
 import {ForgotPasswordNavigationProp} from '../../../types/navigation';
 
 type ForgotPasswordData = {
@@ -15,10 +17,33 @@ const ForgotPasswordScreen = () => {
   const {control, handleSubmit} = useForm<ForgotPasswordData>();
   const navigation = useNavigation<ForgotPasswordNavigationProp>();
 
-  const onSendPressed = (data: ForgotPasswordData) => {
-    console.warn(data);
-    navigation.navigate('New password');
+  const onSendPressed = async ({username}: ForgotPasswordData) => {
+    try {
+      const output = await resetPassword({
+        username,
+      });
+      handleResetPasswordNextSteps(output);
+    } catch (e) {
+      console.log('ERROR RECORDING', e);
+    }
   };
+
+  function handleResetPasswordNextSteps(output: ResetPasswordOutput) {
+    const {nextStep} = output;
+    switch (nextStep.resetPasswordStep) {
+      case 'CONFIRM_RESET_PASSWORD_WITH_CODE':
+        const codeDeliveryDetails = nextStep.codeDeliveryDetails;
+        Alert.alert(
+          `Confirmation code was sent to ${codeDeliveryDetails.deliveryMedium} ${codeDeliveryDetails.destination}`,
+        );
+        navigation.navigate('New password');
+        // Collect the confirmation code from the user and pass to confirmResetPassword.
+        break;
+      case 'DONE':
+        console.log('Successfully reset password.');
+        break;
+    }
+  }
 
   const onSignInPress = () => {
     navigation.navigate('Sign in');

@@ -1,9 +1,11 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
+import {signUp} from 'aws-amplify/auth';
 import {SignUpNavigationProp} from '../../../types/navigation';
 import colors from '../../../theme/colors';
 
@@ -24,9 +26,39 @@ const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm<SignUpData>();
   const pwd = watch('password');
   const navigation = useNavigation<SignUpNavigationProp>();
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const onRegisterPressed = ({name, email, username, password}: SignUpData) => {
-    navigation.navigate('Confirm email', {username});
+  const onRegisterPressed = async ({
+    name,
+    email,
+    username,
+    password,
+  }: SignUpData) => {
+    if (isLoading) {
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const {isSignUpComplete, userId, nextStep} = await signUp({
+        username,
+        password,
+        options: {
+          userAttributes: {
+            email,
+            name,
+          },
+          // optional
+          autoSignIn: true,
+        },
+      });
+      if (!isSignUpComplete && nextStep.signUpStep === 'CONFIRM_SIGN_UP') {
+        navigation.navigate('Confirm email', {username});
+      }
+    } catch (error) {
+      Alert.alert('Oopps', (error as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onSignInPress = () => {
@@ -96,7 +128,7 @@ const SignUpScreen = () => {
           name="password"
           control={control}
           placeholder="Password"
-          secureTextEntry
+          secureTextEntry={false}
           rules={{
             required: 'Password is required',
             minLength: {
@@ -109,7 +141,7 @@ const SignUpScreen = () => {
           name="passwordRepeat"
           control={control}
           placeholder="Repeat Password"
-          secureTextEntry
+          secureTextEntry={false}
           rules={{
             validate: (value: string) =>
               value === pwd || 'Password do not match',
@@ -117,7 +149,7 @@ const SignUpScreen = () => {
         />
 
         <CustomButton
-          text="Register"
+          text={isLoading ? 'Loading...' : 'Register'}
           onPress={handleSubmit(onRegisterPressed)}
         />
 

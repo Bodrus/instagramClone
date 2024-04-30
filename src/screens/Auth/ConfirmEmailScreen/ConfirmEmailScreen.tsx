@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
+import {confirmSignUp} from 'aws-amplify/auth';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
 import {
@@ -22,11 +23,28 @@ const ConfirmEmailScreen = () => {
     defaultValues: {username: route.params.username},
   });
 
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
 
-  const onConfirmPressed = (data: ConfirmEmailData) => {
-    console.warn(data);
-    navigation.navigate('Sign in');
+  const onConfirmPressed = async (data: ConfirmEmailData) => {
+    if (isLoading) {
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const {isSignUpComplete} = await confirmSignUp({
+        username: data.username,
+        confirmationCode: data.code,
+      });
+      if (isSignUpComplete) {
+        navigation.navigate('Sign in');
+      }
+    } catch (error) {
+      console.log('error confirming sign up', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onSignInPress = () => {
