@@ -6,14 +6,14 @@ import FeedGridView from '../../components/FeedGridView';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {
   MyProfileRouteProp,
-  MyProfileScreenProp,
+  MyProfileNavigationProp,
   UserProfileNavigationProp,
   UserProfileRouteProp,
-} from '../../navigation/types.ts';
+} from '../../types/navigation.ts';
 
 const ProfileScreen = () => {
   const navigation = useNavigation<
-    UserProfileNavigationProp | MyProfileScreenProp
+    UserProfileNavigationProp | MyProfileNavigationProp
   >();
   const route = useRoute<UserProfileRouteProp | MyProfileRouteProp>();
 

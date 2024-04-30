@@ -11,5 +11,49 @@
       "StackId": "arn:aws:cloudformation:eu-west-3:992382798047:stack/amplify-instagram-staging-fa2c3/bfdb93d0-0320-11ef-8ffb-06a6cd00a50f",
       "AmplifyAppId": "d98fw7kz97i5p"
     }
+  },
+  "auth": {
+    "Instagram": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL",
+          "NAME"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 7,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/auth/Instagram-cloudformation-template.json",
+        "logicalId": "authInstagram"
+      },
+      "lastPushTimeStamp": "2024-04-29T07:29:10.619Z",
+      "output": {
+        "UserPoolId": "eu-west-3_Xg5WLkJAf",
+        "AppClientIDWeb": "6tasigq4mudrjfj3unnqee54is",
+        "AppClientID": "3trl3jv65ested3hoj845c5eq2",
+        "IdentityPoolId": "eu-west-3:94d95cfc-0643-4df9-b766-f10d9b6ac29e",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-west-3:992382798047:userpool/eu-west-3_Xg5WLkJAf",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "Instagram"
+      },
+      "lastPushDirHash": "La+Z5UxcYjiUoCTlboVb5BmLtrQ="
+    }
   }
 }

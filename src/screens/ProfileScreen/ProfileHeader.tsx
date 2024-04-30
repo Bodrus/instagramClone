@@ -1,18 +1,26 @@
 import React from 'react';
+import {Image, Text, View} from 'react-native';
+import {signOut} from 'aws-amplify/auth';
+import {useNavigation} from '@react-navigation/native';
 
 import user from '../../assets/data/user.json';
-import {Image, Text, View} from 'react-native';
 import styles from './styles.ts';
 import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import { ProfileNavigationProps } from "../../navigation/types.ts";
+import {ProfileNavigationProp} from '../../types/navigation.ts';
 
 const ProfileHeader = () => {
-  const navigation = useNavigation<ProfileNavigationProps>();
+  const navigation = useNavigation<ProfileNavigationProp>();
 
-  const handleEditPress = () => navigation.navigate('EditProfile');
+  const handleEditPress = () => navigation.navigate('Edit Profile');
 
-  const handleAnotherPress = () => {};
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigation.navigate('Auth');
+    } catch (error) {
+      console.log('error signing out: ', error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -43,7 +51,7 @@ const ProfileHeader = () => {
 
       <View style={styles.buttons}>
         <Button onPress={handleEditPress} title="Edit Profile" />
-        <Button onPress={handleAnotherPress} title="Another Button" />
+        <Button onPress={handleSignOut} title="Sign-out" />
       </View>
     </View>
   );
