@@ -1,4 +1,4 @@
-package com.awesomeproject
+package dev.bodrus.photos
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
