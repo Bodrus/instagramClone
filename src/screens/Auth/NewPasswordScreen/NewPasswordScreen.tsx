@@ -1,9 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
-import {
-  confirmResetPassword,
-  type ConfirmResetPasswordInput,
-} from 'aws-amplify/auth';
+import {confirmResetPassword} from 'aws-amplify/auth';
 
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';

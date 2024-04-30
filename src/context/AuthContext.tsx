@@ -8,16 +8,16 @@ import React, {
 import {getCurrentUser, AuthUser} from 'aws-amplify/auth';
 import {Hub} from 'aws-amplify/utils';
 
-const AuthContext = createContext<UserContextState>({
-  user: null,
+interface UserContextType {
+  user: AuthUser | null | undefined;
+}
+
+const AuthContext = createContext<UserContextType>({
+  user: undefined,
 });
 
 interface UserContextProps {
   children: ReactNode;
-}
-
-interface UserContextState {
-  user: AuthUser | null | undefined;
 }
 
 const AuthContextProvider = ({children}: UserContextProps) => {
@@ -25,8 +25,8 @@ const AuthContextProvider = ({children}: UserContextProps) => {
 
   async function checkUser() {
     try {
-      const data = await getCurrentUser();
-      setUser(data);
+      const authUser = await getCurrentUser();
+      setUser(authUser);
     } catch (err) {
       console.log(err);
       setUser(null);
