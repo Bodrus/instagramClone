@@ -36,7 +36,10 @@ const SignInScreen = () => {
     }
     try {
       setIsLoading(true);
-      await signIn({username, password});
+      const {nextStep} = await signIn({username, password});
+      if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
+        navigation.navigate('Confirm email', {username});
+      }
     } catch (e) {
       Alert.alert('Oopps', (e as Error).message);
     } finally {

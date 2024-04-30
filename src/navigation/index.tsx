@@ -7,7 +7,7 @@ import CommentsScreen from '../screens/CommentsScreen';
 import {RootNavigatorParamList} from '../types/navigation.ts';
 import AuthStackNavigator from './AuthStackNavigator.tsx';
 import {useAuthContext} from '../context/AuthContext.tsx';
-import { ActivityIndicator, View } from "react-native";
+import {ActivityIndicator, View} from 'react-native';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
@@ -45,21 +45,22 @@ const Navigation = () => {
   return (
     <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={{headerShown: true}}>
-        {!user && (
+        {!user ? (
           <Stack.Screen
             name="Auth"
             component={AuthStackNavigator}
             options={{headerShown: false}}
           />
+        ) : (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={BottomTabNavigator}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen name="Comments" component={CommentsScreen} />
+          </>
         )}
-        {user && (
-          <Stack.Screen
-            name="Home"
-            component={BottomTabNavigator}
-            options={{headerShown: false}}
-          />
-        )}
-        <Stack.Screen name="Comments" component={CommentsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -16,8 +16,14 @@ type ForgotPasswordData = {
 const ForgotPasswordScreen = () => {
   const {control, handleSubmit} = useForm<ForgotPasswordData>();
   const navigation = useNavigation<ForgotPasswordNavigationProp>();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onSendPressed = async ({username}: ForgotPasswordData) => {
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
     try {
       const output = await resetPassword({
         username,
@@ -25,6 +31,8 @@ const ForgotPasswordScreen = () => {
       handleResetPasswordNextSteps(output);
     } catch (e) {
       console.log('ERROR RECORDING', e);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,7 +71,10 @@ const ForgotPasswordScreen = () => {
           }}
         />
 
-        <CustomButton text="Send" onPress={handleSubmit(onSendPressed)} />
+        <CustomButton
+          text={isLoading ? 'Loading' : 'Send'}
+          onPress={handleSubmit(onSendPressed)}
+        />
 
         <CustomButton
           text="Back to Sign in"
