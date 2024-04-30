@@ -30,7 +30,7 @@ if ENV['RNV_SAMPLE_VIDEO_CACHING']
     $RNVideoUseVideoCaching = true
  end
 
-target 'AwesomeProject' do
+target 'bodrusPhotos' do
   use_expo_modules!
   post_integrate do |installer|
     begin
@@ -52,7 +52,7 @@ target 'AwesomeProject' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'AwesomeProjectTests' do
+  target 'bodrusPhotosTests' do
     inherit! :complete
     # Pods for testing
   end
