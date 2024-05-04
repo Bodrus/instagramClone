@@ -40,7 +40,7 @@ const AuthContextProvider = ({children}: UserContextProps) => {
       if (payload.event === 'signedOut') {
         setUser(null);
       }
-      if (payload.event === 'signedIn') {
+      if (payload.event === 'signedIn' || payload.event === 'signInWithRedirect') {
         checkUser();
       }
     });
