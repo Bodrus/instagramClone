@@ -13,23 +13,23 @@
     }
   },
   "auth": {
-    "Instagram": {
+    "instagramaa744a0c": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
-        "socialProviders": [],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
         "usernameAttributes": [],
         "signupAttributes": [
-          "EMAIL",
-          "NAME"
+          "EMAIL"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 7,
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE"
-          ]
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -40,20 +40,22 @@
         ]
       },
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/auth/Instagram-cloudformation-template.json",
-        "logicalId": "authInstagram"
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/auth/instagramaa744a0c-cloudformation-template.json",
+        "logicalId": "authinstagramaa744a0c"
       },
-      "lastPushTimeStamp": "2024-04-29T12:28:26.262Z",
+      "lastPushTimeStamp": "2024-05-04T06:03:07.728Z",
       "output": {
-        "UserPoolId": "eu-west-3_Xg5WLkJAf",
-        "AppClientIDWeb": "6tasigq4mudrjfj3unnqee54is",
-        "AppClientID": "3trl3jv65ested3hoj845c5eq2",
-        "IdentityPoolId": "eu-west-3:94d95cfc-0643-4df9-b766-f10d9b6ac29e",
-        "UserPoolArn": "arn:aws:cognito-idp:eu-west-3:992382798047:userpool/eu-west-3_Xg5WLkJAf",
-        "IdentityPoolName": "testAuthIdentityPool__staging",
-        "UserPoolName": "Instagram"
+        "UserPoolId": "eu-west-3_idm3dO1XC",
+        "AppClientIDWeb": "7rq02mldqva0a5tpk6o7g46b9j",
+        "AppClientID": "3fnev251kqbn2sl1e86ukfe9a",
+        "HostedUIDomain": "instagramaa744a0c-aa744a0c-staging",
+        "IdentityPoolId": "eu-west-3:aa1ffb8f-a6c5-43cf-8f99-87f9c731f302",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-west-3:992382798047:userpool/eu-west-3_idm3dO1XC",
+        "IdentityPoolName": "instagramaa744a0c_identitypool_aa744a0c__staging",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"bodrusphotos://\"],\"LogoutURLs\":[\"bodrusphotos://\"]}",
+        "UserPoolName": "instagramaa744a0c_userpool_aa744a0c"
       },
-      "lastPushDirHash": "La+Z5UxcYjiUoCTlboVb5BmLtrQ="
+      "lastPushDirHash": "4zyceGNlA9gnM+eL+vKrcIhE8bQ="
     }
   }
 }

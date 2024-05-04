@@ -16,7 +16,7 @@ import {signIn} from 'aws-amplify/auth';
 
 import {SignInNavigationProp} from '../../../types/navigation.ts';
 // @ts-ignore
-import Logo from '../../../assets/images/logo.png';
+import Logo from '../../../assets/images/logo2.png';
 
 type SignInData = {
   username: string;
