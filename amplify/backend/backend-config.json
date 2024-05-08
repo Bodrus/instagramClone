@@ -64,6 +64,17 @@
   "function": {
     "instagramaa744a0cPostConfirmation": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "Instagram"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }

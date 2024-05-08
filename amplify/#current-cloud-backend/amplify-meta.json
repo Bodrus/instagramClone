@@ -61,7 +61,7 @@
         "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"bodrusphotos://\"],\"LogoutURLs\":[\"bodrusphotos://\"]}",
         "UserPoolName": "instagramaa744a0c_userpool_aa744a0c"
       },
-      "lastPushTimeStamp": "2024-05-07T14:23:21.985Z",
+      "lastPushTimeStamp": "2024-05-08T13:48:25.587Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/auth/instagramaa744a0c-cloudformation-template.json",
         "logicalId": "authinstagramaa744a0c"
@@ -80,15 +80,31 @@
         "Name": "instagramaa744a0cPostConfirmation-staging",
         "LambdaExecutionRole": "instagramaa744a0cPostConfirmation-staging"
       },
-      "lastPushTimeStamp": "2024-05-07T14:23:21.988Z",
+      "lastPushTimeStamp": "2024-05-08T13:48:29.342Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/function/instagramaa744a0cPostConfirmation-cloudformation-template.json",
         "logicalId": "functioninstagramaa744a0cPostConfirmation"
       },
       "s3Bucket": {
         "deploymentBucketName": "amplify-instagram-staging-fa2c3-deployment",
-        "s3Key": "amplify-builds/instagramaa744a0cPostConfirmation-4542386c654d456d4e6c-build.zip"
-      }
+        "s3Key": "amplify-builds/instagramaa744a0cPostConfirmation-59345458754554774c4a-build.zip"
+      },
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "Instagram",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2024-05-08T13:46:17.421Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-05-08T13:46:17.758Z",
+      "distZipFilename": "instagramaa744a0cPostConfirmation-59345458754554774c4a-build.zip",
+      "lastPushDirHash": "eO5XwCsEEoNv1O6LGK80A2CMHLY="
     }
   },
   "api": {
@@ -119,7 +135,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-fa2c3-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiInstagram"
       },
-      "lastPushTimeStamp": "2024-05-07T14:23:25.345Z",
+      "lastPushTimeStamp": "2024-05-08T13:48:25.595Z",
       "lastPushDirHash": "yomHdYdtEKTSsQk4dImCBBRoafQ="
     }
   }
