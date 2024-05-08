@@ -2,11 +2,12 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors.ts';
 import React, {useState} from 'react';
-import {IComment} from '../../types/models.ts';
+import {Comment as CommentType} from '../../API.ts';
+
 import fonts from '../../theme/fonts.ts';
 
 interface CommentProps {
-  comment: IComment;
+  comment: CommentType;
   fullDetails?: boolean;
 }
 
@@ -16,12 +17,12 @@ const Comment = ({comment, fullDetails = false}: CommentProps) => {
   const toggleLiked = () => setIsLiked(e => !e);
   return (
     <View style={styles.comment}>
-      {fullDetails && (
-        <Image source={{uri: comment.user.image}} style={styles.userImg} />
+      {fullDetails && comment.User?.image && (
+        <Image source={{uri: comment.User.image}} style={styles.userImg} />
       )}
       <View style={styles.middle}>
         <Text style={styles.text}>
-          <Text style={styles.boldText}>{comment.user.username}</Text>{' '}
+          <Text style={styles.boldText}>{comment.User?.username}</Text>{' '}
           {comment.comment}
         </Text>
         {fullDetails && (
