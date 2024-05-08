@@ -7,16 +7,18 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles.ts';
-import {IPost} from '../../types/models.ts';
+
 import colors from '../../theme/colors.ts';
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
 import Comment from '../Comment';
 import {FeedNavigationProp} from '../../types/navigation.ts';
+import {Post} from '../../API.ts';
+import {DEFAULT_USER_IMAGE} from '../../config';
 
 interface FeedPostProps {
-  post: IPost;
+  post: Post;
   isVisible: boolean;
 }
 
@@ -30,7 +32,9 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
   const toggleLiked = () => setIsLiked(v => !v);
 
   const navigateToUser = () => {
-    navigation.navigate('UserProfile', {userId: post.user.id});
+    if (post.User) {
+      navigation.navigate('UserProfile', {userId: post.User.id});
+    }
   };
 
   const goToAllComments = () =>
@@ -64,12 +68,12 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
         <Pressable onPress={navigateToUser}>
           <Image
             source={{
-              uri: post.user.image,
+              uri: post.User?.image || DEFAULT_USER_IMAGE,
             }}
             style={styles.userAvatar}
           />
         </Pressable>
-        <Text style={styles.userName}>{post.user.username}</Text>
+        <Text style={styles.userName}>{post.User?.username}</Text>
         <Entypo
           name="dots-three-horizontal"
           style={styles.threeDots}
@@ -101,7 +105,7 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
 
         {/*Post Description*/}
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 3 : 0}>
-          <Text style={styles.boldText}>{post.user.username}</Text>{' '}
+          <Text style={styles.boldText}>{post.User?.username}</Text>{' '}
           {post.description}
         </Text>
         <Text style={styles.textGrey} onPress={toggleDescriptionExpanded}>
@@ -110,9 +114,9 @@ const FeedPost = ({post, isVisible}: FeedPostProps) => {
         <Text style={styles.textGrey} onPress={goToAllComments}>
           View all 16 comments
         </Text>
-        {post.comments?.map(el => (
-          <Comment key={el.id} comment={el} />
-        ))}
+        {(post.Comments?.items || []).map(
+          el => el && <Comment key={el.id} comment={el} />,
+        )}
 
         <Text style={styles.textGrey}>{post.createdAt}</Text>
       </View>
