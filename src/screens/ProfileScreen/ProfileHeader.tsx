@@ -50,8 +50,8 @@ const ProfileHeader = () => {
       </View>
 
       <View style={styles.buttons}>
-        <Button onPress={handleEditPress} title="Edit Profile" />
-        <Button onPress={handleSignOut} title="Sign-out" />
+        <Button onPress={handleEditPress} title="Edit Profile" inline />
+        <Button onPress={handleSignOut} title="Sign-out" inline />
       </View>
     </View>
   );
