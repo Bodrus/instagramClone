@@ -6,11 +6,18 @@ import fonts from '../../theme/fonts.ts';
 interface ButtonProps {
   title?: string;
   onPress?: () => void;
+  inline?: boolean;
 }
 
-const Button = ({title = '', onPress = () => {}}: ButtonProps) => {
+const Button = ({
+  title = '',
+  onPress = () => {},
+  inline = false,
+}: ButtonProps) => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable
+      style={[styles.container, inline ? {flex: 1} : {}]}
+      onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
@@ -21,8 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: colors.border,
-    flex: 1,
     paddingVertical: 7,
+    paddingHorizontal: 15,
     borderRadius: 5,
     margin: 5,
   },
