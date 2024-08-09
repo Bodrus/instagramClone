@@ -57,6 +57,11 @@ export type ProfileNavigationProp = NativeStackNavigationProp<
   'Profile'
 >;
 
+export type SearchTabNavigatorParamList = {
+  Users: undefined;
+  Posts: undefined;
+};
+
 // Auth Stack Navigator
 export type AuthStackNavigatorParamList = {
   'Sign in': undefined;

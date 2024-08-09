@@ -11,7 +11,6 @@ const Tab = createMaterialTopTabNavigator<SearchTabNavigatorParamList>();
 const SearchTabNavigator = () => {
   const insets = useSafeAreaInsets();
   return (
-    // <SafeAreaView style={{flex: 1}}>
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {paddingTop: insets.top},
@@ -20,7 +19,6 @@ const SearchTabNavigator = () => {
       <Tab.Screen name="Users" component={UsersScreen} />
       <Tab.Screen name="Posts" component={CommentsScreen} />
     </Tab.Navigator>
-    // </SafeAreaView>
   );
 };
 

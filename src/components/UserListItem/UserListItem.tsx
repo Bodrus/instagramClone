@@ -12,7 +12,10 @@ const UserListItem = ({user}: UserListItemProps) => {
   const navigation = useNavigation();
 
   const goToUserScreen = () => {
-    navigation.navigate('UserProfile', {userId: user.id});
+    navigation.navigate('UserProfile', {
+      screen: 'Profile',
+      params: {userId: user.id}, //TODO
+    });
   };
 
   return (

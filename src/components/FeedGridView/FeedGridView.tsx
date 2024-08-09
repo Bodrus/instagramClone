@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {FlatList} from 'react-native';
-import {IPost} from '../../types/models.ts';
 import FeedGridItem from './FeedGridItem.tsx';
+import {Post} from '../../API.ts';
 
 interface FeedGridViewProps {
-  data: IPost[];
+  data: Post[];
   ListHeaderComponent:
     | React.ComponentType<any>
     | React.ReactElement<unknown>

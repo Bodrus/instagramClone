@@ -7,13 +7,18 @@ import React, {
 } from 'react';
 import {getCurrentUser, AuthUser} from 'aws-amplify/auth';
 import {Hub} from 'aws-amplify/utils';
+import {CognitoUser} from 'amazon-cognito-identity-js';
 
 interface UserContextType {
   user: AuthUser | null | undefined;
+  userId: string;
 }
+
+type UserType = AuthUser | null | undefined;
 
 const AuthContext = createContext<UserContextType>({
   user: undefined,
+  userId: '',
 });
 
 interface UserContextProps {
@@ -21,7 +26,7 @@ interface UserContextProps {
 }
 
 const AuthContextProvider = ({children}: UserContextProps) => {
-  const [user, setUser] = useState<AuthUser | null | undefined>(undefined);
+  const [user, setUser] = useState<UserType>(undefined);
 
   async function checkUser() {
     try {
@@ -40,7 +45,10 @@ const AuthContextProvider = ({children}: UserContextProps) => {
       if (payload.event === 'signedOut') {
         setUser(null);
       }
-      if (payload.event === 'signedIn' || payload.event === 'signInWithRedirect') {
+      if (
+        payload.event === 'signedIn' ||
+        payload.event === 'signInWithRedirect'
+      ) {
         checkUser();
       }
     });
@@ -51,7 +59,11 @@ const AuthContextProvider = ({children}: UserContextProps) => {
     checkUser();
   }, []);
 
-  return <AuthContext.Provider value={{user}}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{user, userId: user?.userId}}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthContextProvider;
